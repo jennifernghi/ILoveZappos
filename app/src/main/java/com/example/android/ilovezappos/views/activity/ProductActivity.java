@@ -1,7 +1,9 @@
-package com.example.android.ilovezappos;
+package com.example.android.ilovezappos.views.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.android.ilovezappos.R;
 
 public class ProductActivity extends AppCompatActivity {
 

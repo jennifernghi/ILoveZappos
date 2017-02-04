@@ -4,10 +4,11 @@
     android:id="@+id/activity_product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.ilovezappos.ProductActivity">
+    tools:context="com.example.android.ilovezappos.views.activity.ProductActivity">
 
-   <ListView
+   <android.support.v7.widget.RecyclerView
        android:id="@+id/list"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+       android:layout_height="match_parent"
+       android:scrollbars="vertical"/>
 </RelativeLayout>
