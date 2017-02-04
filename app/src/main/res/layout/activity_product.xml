@@ -5,9 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.ilovezappos.views.activity.ProductActivity">
-
-   <ListView
+   <LinearLayout
+       android:id="@+id/search_box"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_alignParentTop="true">
+      <TextView
+          android:layout_width="0dp"
+          android:layout_height="20dp"
+          android:layout_weight="0.8"/>
+      <Button
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="0.2"
+          android:text=""/>
+   </LinearLayout>
+   <android.support.v7.widget.RecyclerView
        android:id="@+id/list"
+       android:layout_below="@id/search_box"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:scrollbars="vertical"/>
