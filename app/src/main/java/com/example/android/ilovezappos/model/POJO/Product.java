@@ -1,4 +1,4 @@
-package com.example.android.ilovezappos.model;
+package com.example.android.ilovezappos.model.POJO;
 
 /**
  * Created by jennifernghinguyen on 2/3/17.

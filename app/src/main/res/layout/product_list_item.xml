@@ -6,11 +6,7 @@
 
         <variable
             name="product"
-            type="com.example.android.ilovezappos.model.Product" />
-
-        <variable
-            name="glide"
-            type="com.bumptech.glide.Glide" />
+            type="com.example.android.ilovezappos.model.POJO.Product" />
 
     </data>
 

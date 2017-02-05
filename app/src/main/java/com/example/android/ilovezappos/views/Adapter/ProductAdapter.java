@@ -2,11 +2,13 @@ package com.example.android.ilovezappos.views.Adapter;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.ilovezappos.R;
-import com.example.android.ilovezappos.model.Product;
+import com.example.android.ilovezappos.model.POJO.Product;
 
 import com.example.android.ilovezappos.databinding.ProductListItemBinding;
 import java.util.ArrayList;
@@ -29,8 +31,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(ProductViewHolder holder, final int position) {
         holder.bindConnection(products.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("adapter", products.get(position).getProductName());
+            }
+        });
     }
 
     @Override

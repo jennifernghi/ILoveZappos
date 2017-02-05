@@ -5,7 +5,8 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.android.ilovezappos.model.Product;
+import com.example.android.ilovezappos.model.POJO.Product;
+
 import com.example.android.ilovezappos.utils.Constants;
 import com.example.android.ilovezappos.utils.URLUtils;
 
@@ -46,12 +47,9 @@ public class ProductLoader extends AsyncTaskLoader<List<Product>>{
         }
 
         String url = URLUtils.buildURI(context, baseUrl, term);
-        Log.i(LOG_TAG, "url: " + url);
         products = URLUtils.fetchData(url);
 
-        for(Product p: products){
-            Log.i(LOG_TAG, p.getProductName() + " " + p.getThumbnailImageUrl());
-        }
+
         return products;
     }
 

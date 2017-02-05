@@ -6,7 +6,7 @@
 <data>
     <import type="android.view.View"/>
     <variable
-        name="productactivity"
+        name="productActivity"
         type="com.example.android.ilovezappos.views.activity.ProductActivity"/>
 </data>
 

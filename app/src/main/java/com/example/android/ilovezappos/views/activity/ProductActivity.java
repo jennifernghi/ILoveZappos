@@ -2,6 +2,7 @@ package com.example.android.ilovezappos.views.activity;
 
 import android.app.LoaderManager;
 import android.content.Loader;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.android.ilovezappos.R;
-import com.example.android.ilovezappos.model.Product;
+import com.example.android.ilovezappos.databinding.ActivityProductBinding;
+import com.example.android.ilovezappos.model.POJO.Product;
 import com.example.android.ilovezappos.networking.ProductLoader;
 import com.example.android.ilovezappos.utils.Constants;
 import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
@@ -26,36 +28,36 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     private String term = "";
     private ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
-    private EditText searchInput;
-    private RelativeLayout emptyView;
-    private TextView emptyTextView;
-    private RecyclerView recyclerView;
+    private ActivityProductBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
-        implementSearchBox();
-        implementEmptyView();
-        recyclerView = (RecyclerView) findViewById(R.id.list);
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
+        binding.setProductActivity(this);
+        initializeView();
         startLoading(1);
 
+
+    }
+
+    private void initializeView() {
+        initializeRecyclerView(binding.list);
+        initializeEmptyView(binding.emptyView);
+        implementSearchBox(binding.inputText);
+    }
+
+    private void initializeRecyclerView(RecyclerView recyclerView) {
         adapter = new ProductAdapter(products);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
     }
 
-    private void implementEmptyView() {
-        emptyView = (RelativeLayout) findViewById(R.id.empty_view);
-        emptyTextView = (TextView) findViewById(R.id.empty_text_view);
-        emptyView.setVisibility(View.GONE);
-        emptyView.setVisibility(View.GONE);
+    private void initializeEmptyView(RelativeLayout relativeLayout) {
+        relativeLayout.setVisibility(View.GONE);
     }
 
-    private void implementSearchBox() {
-        searchInput = (EditText) findViewById(R.id.input_text);
+    private void implementSearchBox(final EditText searchInput) {
         searchInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +90,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     public void search(EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -119,14 +122,26 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     public void enableEmptyView(boolean status, String message) {
         if (status) {
-            recyclerView.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-            emptyTextView.setVisibility(View.VISIBLE);
-            emptyTextView.setText(message);
+            getRecyclerView().setVisibility(View.GONE);
+            getEmptyView().setVisibility(View.VISIBLE);
+            getEmptyTextView().setVisibility(View.VISIBLE);
+            getEmptyTextView().setText(message);
         } else {
-            recyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-            emptyTextView.setVisibility(View.GONE);
+            getRecyclerView().setVisibility(View.VISIBLE);
+            getEmptyView().setVisibility(View.GONE);
+            getEmptyTextView().setVisibility(View.GONE);
         }
+    }
+
+    public RecyclerView getRecyclerView() {
+        return binding.list;
+    }
+
+    public RelativeLayout getEmptyView() {
+        return binding.emptyView;
+    }
+
+    public TextView getEmptyTextView() {
+        return binding.emptyTextView;
     }
 }

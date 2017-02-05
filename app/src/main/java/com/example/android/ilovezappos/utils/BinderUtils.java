@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.android.ilovezappos.model.Product;
+
+import com.example.android.ilovezappos.model.POJO.Product;
+
 
 /**
  * Created by jennifernghinguyen on 2/4/17.

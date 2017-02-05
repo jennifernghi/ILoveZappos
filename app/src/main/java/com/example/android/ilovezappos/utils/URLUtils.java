@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.example.android.ilovezappos.R;
-import com.example.android.ilovezappos.model.Product;
+import com.example.android.ilovezappos.model.POJO.Product;
 
 import org.json.JSONArray;
 import org.json.JSONException;
