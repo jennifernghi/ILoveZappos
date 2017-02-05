@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.example.android.ilovezappos.databinding.ProductListItemBinding;
 import com.example.android.ilovezappos.model.POJO.Product;
+import com.example.android.ilovezappos.views.activity.ProductActivity;
 
 /**
  * Created by jennifernghinguyen on 2/4/17.
@@ -20,8 +21,9 @@ public class ProductViewHolder extends RecyclerView.ViewHolder{
         binding = _binding;
     }
 
-    public void bindConnection(Product product){
+    public void bindConnection(Product product, ProductActivity productActivity){
         binding.setProduct(product);
+        binding.setProductActivity(productActivity);
     }
 
 

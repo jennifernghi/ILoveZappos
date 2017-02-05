@@ -7,6 +7,9 @@
         <variable
             name="product"
             type="com.example.android.ilovezappos.model.POJO.Product" />
+        <variable
+            name="productActivity"
+            type="com.example.android.ilovezappos.views.activity.ProductActivity" />
 
     </data>
 
@@ -14,13 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/white"
-        >
+        android:background="@android:color/white">
 
         <ImageView
             android:layout_width="100dp"

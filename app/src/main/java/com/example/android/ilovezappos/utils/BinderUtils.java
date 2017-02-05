@@ -31,7 +31,6 @@ public final class BinderUtils {
 
     @BindingAdapter("strikethrough")
     public static void setStrikeThroughText(TextView textView, String text){
-        //Context context = textView.getContext();
         textView.setText(text);
         textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }

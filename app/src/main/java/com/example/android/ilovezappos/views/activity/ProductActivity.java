@@ -12,11 +12,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.databinding.ActivityProductBinding;
 import com.example.android.ilovezappos.model.POJO.Product;
+import com.example.android.ilovezappos.model.ViewModel.ProductActivityModel;
 import com.example.android.ilovezappos.networking.ProductLoader;
 import com.example.android.ilovezappos.utils.Constants;
 import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
@@ -24,31 +24,30 @@ import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
 import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Product>> {
-    final static String LOG_TAG = ProductActivity.class.getSimpleName();
     private String term = "";
     private ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
     private ActivityProductBinding binding;
+    private ProductActivityModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
-        binding.setProductActivity(this);
+        model = new ProductActivityModel(this, binding);
+        binding.setProductActivityModel(model);
         initializeView();
         startLoading(1);
-
-
     }
 
     private void initializeView() {
-        initializeRecyclerView(binding.list);
-        initializeEmptyView(binding.emptyView);
-        implementSearchBox(binding.inputText);
+        initializeRecyclerView(model.getRecyclerView());
+        initializeEmptyView(model.getEmptyView());
+        implementSearchBox(model.getEditField());
     }
 
     private void initializeRecyclerView(RecyclerView recyclerView) {
-        adapter = new ProductAdapter(products);
+        adapter = new ProductAdapter(products, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -122,26 +121,15 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     public void enableEmptyView(boolean status, String message) {
         if (status) {
-            getRecyclerView().setVisibility(View.GONE);
-            getEmptyView().setVisibility(View.VISIBLE);
-            getEmptyTextView().setVisibility(View.VISIBLE);
-            getEmptyTextView().setText(message);
+            model.getRecyclerView().setVisibility(View.GONE);
+            model.getEmptyView().setVisibility(View.VISIBLE);
+            model.getEmptyTextView().setVisibility(View.VISIBLE);
+            model.getEmptyTextView().setText(message);
         } else {
-            getRecyclerView().setVisibility(View.VISIBLE);
-            getEmptyView().setVisibility(View.GONE);
-            getEmptyTextView().setVisibility(View.GONE);
+            model.getRecyclerView().setVisibility(View.VISIBLE);
+            model.getEmptyView().setVisibility(View.GONE);
+            model.getEmptyTextView().setVisibility(View.GONE);
         }
     }
 
-    public RecyclerView getRecyclerView() {
-        return binding.list;
-    }
-
-    public RelativeLayout getEmptyView() {
-        return binding.emptyView;
-    }
-
-    public TextView getEmptyTextView() {
-        return binding.emptyTextView;
-    }
 }

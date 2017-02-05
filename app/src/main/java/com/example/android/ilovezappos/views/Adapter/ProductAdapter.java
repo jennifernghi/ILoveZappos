@@ -11,6 +11,8 @@ import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.model.POJO.Product;
 
 import com.example.android.ilovezappos.databinding.ProductListItemBinding;
+import com.example.android.ilovezappos.views.activity.ProductActivity;
+
 import java.util.ArrayList;
 
 /**
@@ -19,10 +21,12 @@ import java.util.ArrayList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder>{
     private ArrayList<Product> products = new ArrayList<>();
+    private ProductActivity productActivity;
 
-    public ProductAdapter(ArrayList<Product> data){
+    public ProductAdapter(ArrayList<Product> data, ProductActivity _productActivity){
         super();
         products = data;
+        productActivity = _productActivity;
     }
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,7 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder>{
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, final int position) {
-        holder.bindConnection(products.get(position));
+        holder.bindConnection(products.get(position), productActivity);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
