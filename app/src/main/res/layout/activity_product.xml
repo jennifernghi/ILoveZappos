@@ -1,31 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.android.ilovezappos.views.activity.ProductActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<data>
+    <import type="android.view.View"/>
+    <variable
+        name="productactivity"
+        type="com.example.android.ilovezappos.views.activity.ProductActivity"/>
+</data>
+
+<RelativeLayout
     android:id="@+id/activity_product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.ilovezappos.views.activity.ProductActivity">
-   <LinearLayout
-       android:id="@+id/search_box"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:layout_alignParentTop="true">
-      <TextView
-          android:layout_width="0dp"
-          android:layout_height="20dp"
-          android:layout_weight="0.8"/>
-      <Button
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="0.2"
-          android:text=""/>
-   </LinearLayout>
-   <android.support.v7.widget.RecyclerView
-       android:id="@+id/list"
-       android:layout_below="@id/search_box"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:scrollbars="vertical"/>
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:id="@+id/search_box"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white">
+
+        <EditText
+            android:id="@+id/input_text"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:hint="@string/search"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textSize="16sp"
+           />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_box"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>
+</layout>

@@ -128,4 +128,12 @@ public class Product {
     public String getProductName() {
         return this.productName;
     }
+
+    public boolean hasDiscount(){
+        if(!this.percentOff.equals("0%") && !this.percentOff.equals("") && this.percentOff !=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

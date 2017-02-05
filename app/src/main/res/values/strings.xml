@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">ILoveZappos</string>
-    <string name="product_name"></string>
+    <string name="search">Search Products</string>
 </resources>
