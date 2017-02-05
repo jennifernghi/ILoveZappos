@@ -10,6 +10,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.model.Product;
@@ -25,11 +27,34 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     private ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
     private EditText searchInput;
+    private RelativeLayout emptyView;
+    private TextView emptyTextView;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+        implementSearchBox();
+        implementEmptyView();
+        recyclerView = (RecyclerView) findViewById(R.id.list);
+
+        startLoading(1);
+
+        adapter = new ProductAdapter(products);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    private void implementEmptyView() {
+        emptyView = (RelativeLayout) findViewById(R.id.empty_view);
+        emptyTextView = (TextView) findViewById(R.id.empty_text_view);
+        emptyView.setVisibility(View.GONE);
+        emptyView.setVisibility(View.GONE);
+    }
+
+    private void implementSearchBox() {
         searchInput = (EditText) findViewById(R.id.input_text);
         searchInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,16 +66,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
             }
         });
         search(searchInput);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-
-        startLoading(1);
-
-        adapter = new ProductAdapter(products);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-
     }
-
 
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
@@ -59,9 +75,13 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<ArrayList<Product>> loader, ArrayList<Product> data) {
-        if (data != null || data.size() > 1) {
+        if (data.size() >= 1) {
+            enableEmptyView(false, null);
             products = data;
             adapter.setLoadedProducts(products);
+
+        } else {
+            enableEmptyView(true, getString(R.string.no_data));
         }
     }
 
@@ -75,10 +95,8 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() != 0) {
-                    term = s.toString().trim();
-                    startLoading(1);
-                }
+                term = s.toString().trim();
+                startLoading(1);
             }
 
             @Override
@@ -96,8 +114,19 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     public void startLoading(int loaderConstant) {
         getLoaderManager().restartLoader(loaderConstant, null, ProductActivity.this);
-
     }
 
 
+    public void enableEmptyView(boolean status, String message) {
+        if (status) {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+            emptyTextView.setVisibility(View.VISIBLE);
+            emptyTextView.setText(message);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+            emptyTextView.setVisibility(View.GONE);
+        }
+    }
 }

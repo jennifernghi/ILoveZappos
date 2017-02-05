@@ -25,7 +25,6 @@
 
         <EditText
             android:id="@+id/input_text"
-            android:focusable="true"
             android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:backgroundTint="@android:color/transparent"
@@ -45,6 +44,23 @@
         android:layout_height="match_parent"
         android:layout_below="@id/search_box"
         android:scrollbars="vertical" />
+
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_below="@id/search_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/empty_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:text="@string/no_data"
+            />
+    </RelativeLayout>
 
 </RelativeLayout>
 </layout>
