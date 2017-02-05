@@ -11,6 +11,8 @@
             name="productActivity"
             type="com.example.android.ilovezappos.views.activity.ProductActivity" />
 
+
+
     </data>
 
     <LinearLayout

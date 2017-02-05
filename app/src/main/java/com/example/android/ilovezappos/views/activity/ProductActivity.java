@@ -24,6 +24,7 @@ import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
 import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Product>> {
+
     private String term = "";
     private ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;

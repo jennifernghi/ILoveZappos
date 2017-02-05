@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.android.ilovezappos.databinding.ActivityProductBinding;
+import com.example.android.ilovezappos.model.POJO.Product;
 
 /**
  * Created by jennifernghinguyen on 2/4/17.
@@ -15,6 +16,7 @@ import com.example.android.ilovezappos.databinding.ActivityProductBinding;
 public class ProductActivityModel {
 
     private Context context;
+    private Product product;
     private ActivityProductBinding binding;
 
     public ProductActivityModel(Context _context, ActivityProductBinding _binding) {
@@ -37,4 +39,6 @@ public class ProductActivityModel {
     public EditText getEditField(){
         return binding.inputText;
     }
+
+
 }

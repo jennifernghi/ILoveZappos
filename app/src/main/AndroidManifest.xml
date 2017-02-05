@@ -23,7 +23,6 @@
             android:name=".views.activity.ProductDetailsActivity"
             android:parentActivityName=".views.activity.ProductActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".views.activity.ProductDetail"></activity>
     </application>
 
 </manifest>
