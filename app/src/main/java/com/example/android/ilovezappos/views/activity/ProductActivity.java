@@ -3,6 +3,8 @@ package com.example.android.ilovezappos.views.activity;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.databinding.DataBindingUtil;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +26,8 @@ import com.example.android.ilovezappos.utils.Constants;
 import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
 
 import java.util.ArrayList;
+
+import static java.security.AccessController.getContext;
 
 public class ProductActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Product>> {
 
@@ -120,7 +124,11 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     }
 
     public void startLoading(int loaderConstant) {
-        getLoaderManager().restartLoader(loaderConstant, null, ProductActivity.this);
+        if(checkNetWorkConnection()) {
+            getLoaderManager().restartLoader(loaderConstant, null, ProductActivity.this);
+        }else {
+            enableEmptyView(true, getString(R.string.no_network));
+        }
     }
 
 
@@ -138,5 +146,16 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     }
 
 
+    private boolean checkNetWorkConnection() {
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
