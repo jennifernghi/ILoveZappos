@@ -25,12 +25,12 @@ public class ProductItemController {
 
     private Context context;
     private Product product;
-    private ProductListItemBinding binding;
+    //private ProductListItemBinding binding;
 
-    public  ProductItemController(Product _product, Context _context, ProductListItemBinding _binding){
+    public  ProductItemController(Product _product, Context _context){
         product =_product;
         context = _context;
-        binding = _binding;
+       // binding = _binding;
     }
 
 

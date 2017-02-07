@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -26,8 +25,6 @@ import com.example.android.ilovezappos.utils.Constants;
 import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
 
 import java.util.ArrayList;
-
-import static java.security.AccessController.getContext;
 
 public class ProductActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Product>> {
 
@@ -124,9 +121,9 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     }
 
     public void startLoading(int loaderConstant) {
-        if(checkNetWorkConnection()) {
+        if (checkNetWorkConnection()) {
             getLoaderManager().restartLoader(loaderConstant, null, ProductActivity.this);
-        }else {
+        } else {
             enableEmptyView(true, getString(R.string.no_network));
         }
     }

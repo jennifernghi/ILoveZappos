@@ -21,7 +21,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindConnection(Product product) {
-        setProductItemController(new ProductItemController(product, itemView.getContext(), binding));
+        setProductItemController(new ProductItemController(product, itemView.getContext()));
         binding.setProductItemController(productItemController);
     }
 
