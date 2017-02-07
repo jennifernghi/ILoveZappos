@@ -66,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
+                app:orginalPriceVisibility="@{productDetailController.product}"
                 app:strikethrough="@{productDetailController.originalPrice}" />
         </LinearLayout>
     </LinearLayout>
@@ -75,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-
+            android:onClick="@{productDetailController::addToCard}"
             android:src="@drawable/add" />
     </android.support.design.widget.CoordinatorLayout>
 

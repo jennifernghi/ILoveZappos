@@ -1,8 +1,10 @@
 package com.example.android.ilovezappos.Controller;
 
 import android.content.Context;
+import android.view.View;
 
 import com.example.android.ilovezappos.model.POJO.Product;
+import com.example.android.ilovezappos.views.activity.AddCartSuccess;
 
 /**
  * Created by jennifernghinguyen on 2/6/17.
@@ -16,6 +18,9 @@ public class ProductDetailController {
         product = _product;
     }
 
+    public Product getProduct(){
+        return product;
+    }
     public String getBrandName() {
         return product.getBrandName();
     }
@@ -48,6 +53,14 @@ public class ProductDetailController {
 
     public String getProductName() {
         return product.getProductName();
+    }
+
+    /*public void setVisibilityOrginalPrice(View view){
+
+    }*/
+
+    public void addToCard(View view){
+        AddCartSuccess.start(context);
     }
 
 }
