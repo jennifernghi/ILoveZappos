@@ -3,16 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <variable
-            name="product"
-            type="com.example.android.ilovezappos.model.POJO.Product" />
-
         <variable
             name="productItemController"
             type="com.example.android.ilovezappos.Controller.ProductItemController" />
-
-
     </data>
 
     <LinearLayout
@@ -68,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
-                app:orginalPriceVisibility="@{product}"
+                app:orginalPriceVisibility="@{productItemController.product}"
                 app:strikethrough="@{productItemController.originalPrice}" />
         </LinearLayout>
     </LinearLayout>

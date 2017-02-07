@@ -68,7 +68,9 @@ public class ProductItemController {
         return product.getProductName();
     }
 
-
+    public Product getProduct(){
+        return product;
+    }
 
     public void onSelected(View view) {
         ProductDetail.startIntent(view.getContext(), product);

@@ -26,8 +26,8 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 app:thumbnailImageUrl="@{productDetailController.thumbnailImageUrl}" />
@@ -68,6 +68,13 @@
                 android:textSize="14sp"
                 app:orginalPriceVisibility="@{productDetailController.product}"
                 app:strikethrough="@{productDetailController.originalPrice}" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:text="@{productDetailController.percentOff}"
+                app:orginalPriceVisibility="@{productDetailController.product}" />
         </LinearLayout>
     </LinearLayout>
         <android.support.design.widget.FloatingActionButton

@@ -3,6 +3,7 @@ package com.example.android.ilovezappos.Controller;
 import android.content.Context;
 import android.view.View;
 
+import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.model.POJO.Product;
 import com.example.android.ilovezappos.views.activity.AddCartSuccess;
 
@@ -42,7 +43,7 @@ public class ProductDetailController {
 
 
     public String getPercentOff() {
-        return product.getPercentOff();
+        return product.getPercentOff() + " " + context.getString(R.string.off);
     }
 
 
@@ -55,9 +56,6 @@ public class ProductDetailController {
         return product.getProductName();
     }
 
-    /*public void setVisibilityOrginalPrice(View view){
-
-    }*/
 
     public void addToCard(View view){
         AddCartSuccess.start(context);
