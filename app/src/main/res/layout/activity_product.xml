@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="productActivityController"
-            type="com.example.android.ilovezappos.Controller.ProductActivityController" />
+            name="productActivityViewModel"
+            type="com.example.android.ilovezappos.model.ViewModel.ProductActivityViewModel" />
     </data>
 
 

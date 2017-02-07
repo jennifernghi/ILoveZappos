@@ -4,12 +4,10 @@ import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.graphics.Paint;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
 import com.example.android.ilovezappos.model.POJO.Product;
 
 
@@ -19,27 +17,27 @@ import com.example.android.ilovezappos.model.POJO.Product;
 
 public final class BinderUtils {
 
-    private BinderUtils(){
+    private BinderUtils() {
 
     }
 
     @BindingAdapter("thumbnailImageUrl")
-    public static void setImages(ImageView imageView, String thumbnailImageUrl){
+    public static void setImages(ImageView imageView, String thumbnailImageUrl) {
         Context context = imageView.getContext();
         Glide.with(context).load(thumbnailImageUrl).into(imageView);
     }
 
     @BindingAdapter("strikethrough")
-    public static void setStrikeThroughText(TextView textView, String text){
+    public static void setStrikeThroughText(TextView textView, String text) {
         textView.setText(text);
         textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     @BindingAdapter("orginalPriceVisibility")
-    public static void setorginalPriceVisibility(TextView textView, Product product){
-        if(product.hasDiscount()){
+    public static void setorginalPriceVisibility(TextView textView, Product product) {
+        if (product.hasDiscount()) {
             textView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             textView.setVisibility(View.GONE);
         }
     }

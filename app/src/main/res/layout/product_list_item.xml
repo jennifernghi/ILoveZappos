@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="productItemController"
-            type="com.example.android.ilovezappos.Controller.ProductItemController" />
+            name="productItemViewModel"
+            type="com.example.android.ilovezappos.model.ViewModel.ProductItemViewModel" />
     </data>
 
     <LinearLayout
@@ -18,14 +18,14 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/white"
-        android:onClick="@{productItemController::onSelected}">
+        android:onClick="@{productItemViewModel::onSelected}">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            app:thumbnailImageUrl="@{productItemController.thumbnailImageUrl}" />
+            app:thumbnailImageUrl="@{productItemViewModel.thumbnailImageUrl}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{productItemController.productName}"
+                android:text="@{productItemViewModel.productName}"
                 android:textColor="@color/primaryText"
                 android:layout_marginEnd="4dp"
                 android:textSize="14sp"
@@ -45,14 +45,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{productItemController.brandName}"
+                android:text="@{productItemViewModel.brandName}"
                 android:textColor="@color/secondaryText"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{productItemController.price}"
+                android:text="@{productItemViewModel.price}"
                 android:textColor="@color/primaryText"
                 android:textSize="14sp" />
 
@@ -61,8 +61,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
-                app:orginalPriceVisibility="@{productItemController.product}"
-                app:strikethrough="@{productItemController.originalPrice}" />
+                app:orginalPriceVisibility="@{productItemViewModel.product}"
+                app:strikethrough="@{productItemViewModel.originalPrice}" />
         </LinearLayout>
     </LinearLayout>
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.model.POJO.Product;
 
 import org.json.JSONArray;
@@ -21,8 +20,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import static kotlin.text.Typography.section;
-
 /**
  * Created by jennifernghinguyen on 2/3/17.
  * this clas is responsible for handling:
@@ -32,26 +29,27 @@ import static kotlin.text.Typography.section;
 public final class URLUtils {
     final static String LOG_TAG = URLUtils.class.getSimpleName();
     public static Context context;
-    private URLUtils(){
+
+    private URLUtils() {
 
     }
 
-    public static String buildURI(Context ct, String urlBase, String term){
-        context = context;
-        if(urlBase == null && term==null){
+    public static String buildURI(Context ct, String urlBase, String term) {
+        context = ct;
+        if (urlBase == null && term == null) {
             return null;
         }
 
         Uri base = Uri.parse(urlBase);
         Uri.Builder builder = base.buildUpon();
         builder.appendQueryParameter("key", Constants.API_KEY);
-        builder.appendQueryParameter("term",term);
+        builder.appendQueryParameter("term", term);
         return builder.toString();
     }
 
-    public static URL createURL(String urlString){
+    public static URL createURL(String urlString) {
         URL url = null;
-        if(urlString == null){
+        if (urlString == null) {
             return null;
         }
 
@@ -112,29 +110,29 @@ public final class URLUtils {
         return response.toString();
     }
 
-    public static ArrayList<Product> extractProducts(String jsonResponse){
+    public static ArrayList<Product> extractProducts(String jsonResponse) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             JSONObject root = new JSONObject(jsonResponse);
             JSONArray results = root.getJSONArray("results");
 
-            for(int i =0; i< results.length(); i++){
+            for (int i = 0; i < results.length(); i++) {
 
                 JSONObject product = (JSONObject) results.get(i);
-                String brandName = getString(product,"brandName");
-                String thumbnailImageUrl = getString(product,"thumbnailImageUrl");
-                String originalPrice = getString(product,"originalPrice");
-                String price = getString(product,"price");
-                String percentOff = getString(product,"percentOff");
-                String productUrl = getString(product,"productUrl");
-                String productName = getString(product,"productName");
+                String brandName = getString(product, "brandName");
+                String thumbnailImageUrl = getString(product, "thumbnailImageUrl");
+                String originalPrice = getString(product, "originalPrice");
+                String price = getString(product, "price");
+                String percentOff = getString(product, "percentOff");
+                String productUrl = getString(product, "productUrl");
+                String productName = getString(product, "productName");
 
-                if(brandName!=null && thumbnailImageUrl!=null && originalPrice!=null && price!=null && percentOff !=null && productUrl!=null && productName !=null){
+                if (brandName != null && thumbnailImageUrl != null && originalPrice != null && price != null && percentOff != null && productUrl != null && productName != null) {
                     products.add(new Product(brandName, thumbnailImageUrl, originalPrice, price, percentOff, productUrl, productName));
                 }
             }
         } catch (JSONException e) {
-           Log.e(LOG_TAG, "getResponseFromStream(): error parsing json");
+            Log.e(LOG_TAG, "getResponseFromStream(): error parsing json");
         }
 
         return products;

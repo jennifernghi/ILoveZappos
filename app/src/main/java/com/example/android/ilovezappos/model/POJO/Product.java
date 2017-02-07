@@ -62,13 +62,6 @@ public class Product implements Serializable {
         return this.thumbnailImageUrl;
     }
 
-    /**
-     * getter
-     * @return productId
-     */
-    /*public int getProductId() {
-        return this.productId;
-    }*/
 
     /**
      * getter
@@ -79,21 +72,6 @@ public class Product implements Serializable {
         return this.originalPrice;
     }
 
-    /**
-     * getter
-     * @return styleId
-     */
-    /*public int getStyleId() {
-        return this.styleId;
-    }*/
-
-    /**
-     * getter
-     * @return colorId
-     */
-    /*public int getColorId() {
-        return this.colorId;
-    }*/
 
     /**
      * getter

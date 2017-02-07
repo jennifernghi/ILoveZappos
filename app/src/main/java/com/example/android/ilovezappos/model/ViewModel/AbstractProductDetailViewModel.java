@@ -1,27 +1,27 @@
-package com.example.android.ilovezappos.Controller;
+package com.example.android.ilovezappos.model.ViewModel;
 
 import android.content.Context;
-import android.view.View;
 
 import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.model.POJO.Product;
-import com.example.android.ilovezappos.views.activity.AddCartSuccess;
 
 /**
- * Created by jennifernghinguyen on 2/6/17.
+ * Created by jennifernghinguyen on 2/7/17.
  */
 
-public class ProductDetailController {
+public abstract class AbstractProductDetailViewModel {
     private Context context;
     private Product product;
-    public ProductDetailController(Context _context, Product _product){
+
+    public AbstractProductDetailViewModel(Context _context, Product _product) {
         context = _context;
         product = _product;
     }
 
-    public Product getProduct(){
+    public Product getProduct() {
         return product;
     }
+
     public String getBrandName() {
         return product.getBrandName();
     }
@@ -56,9 +56,7 @@ public class ProductDetailController {
         return product.getProductName();
     }
 
-
-    public void addToCard(View view){
-        AddCartSuccess.start(context);
+    public Context getContext() {
+        return context;
     }
-
 }

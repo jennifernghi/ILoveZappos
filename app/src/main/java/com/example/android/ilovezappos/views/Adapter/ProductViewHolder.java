@@ -2,7 +2,7 @@ package com.example.android.ilovezappos.views.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.example.android.ilovezappos.Controller.ProductItemController;
+import com.example.android.ilovezappos.model.ViewModel.ProductItemViewModel;
 import com.example.android.ilovezappos.databinding.ProductListItemBinding;
 import com.example.android.ilovezappos.model.POJO.Product;
 
@@ -13,7 +13,7 @@ import com.example.android.ilovezappos.model.POJO.Product;
 public class ProductViewHolder extends RecyclerView.ViewHolder {
 
     private ProductListItemBinding binding;
-    private ProductItemController productItemController;
+    private ProductItemViewModel productItemViewModel;
 
     public ProductViewHolder(ProductListItemBinding _binding) {
         super(_binding.getRoot());
@@ -21,16 +21,16 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindConnection(Product product) {
-        setProductItemController(new ProductItemController(product, itemView.getContext()));
-        binding.setProductItemController(productItemController);
+        setProductItemViewModel(new ProductItemViewModel(itemView.getContext(), product));
+        binding.setProductItemViewModel(productItemViewModel);
     }
 
-    public void setProductItemController(ProductItemController _productItemController) {
-        productItemController = _productItemController;
+    public void setProductItemViewModel(ProductItemViewModel _productItemViewModel) {
+        productItemViewModel = _productItemViewModel;
     }
 
-    public ProductItemController getProductItemController() {
-        return this.productItemController;
+    public ProductItemViewModel getProductItemViewModel() {
+        return this.productItemViewModel;
     }
 
 }
