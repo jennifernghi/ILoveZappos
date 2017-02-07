@@ -7,15 +7,16 @@
         <variable
             name="product"
             type="com.example.android.ilovezappos.model.POJO.Product" />
-        <variable
-            name="productActivity"
-            type="com.example.android.ilovezappos.views.activity.ProductActivity" />
 
+        <variable
+            name="productItemController"
+            type="com.example.android.ilovezappos.Controller.ProductItemController" />
 
 
     </data>
 
     <LinearLayout
+        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -23,14 +24,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:onClick="@{productItemController::onSelected}">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            app:thumbnailImageUrl="@{product.thumbnailImageUrl}" />
+            app:thumbnailImageUrl="@{productItemController.thumbnailImageUrl}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{product.productName}"
+                android:text="@{productItemController.productName}"
                 android:textColor="@color/primaryText"
                 android:layout_marginEnd="4dp"
                 android:textSize="14sp"
@@ -50,14 +52,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{product.brandName}"
+                android:text="@{productItemController.brandName}"
                 android:textColor="@color/secondaryText"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{product.price}"
+                android:text="@{productItemController.price}"
                 android:textColor="@color/primaryText"
                 android:textSize="14sp" />
 
@@ -67,7 +69,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 app:orginalPriceVisibility="@{product}"
-                app:strikethrough="@{product.originalPrice}" />
+                app:strikethrough="@{productItemController.originalPrice}" />
         </LinearLayout>
     </LinearLayout>
+
 </layout>

@@ -8,9 +8,10 @@
         <import type="android.view.View" />
 
         <variable
-            name="productActivityModel"
-            type="com.example.android.ilovezappos.model.ViewModel.ProductActivityModel" />
+            name="productActivityController"
+            type="com.example.android.ilovezappos.Controller.ProductActivityController" />
     </data>
+
 
     <RelativeLayout
         android:id="@+id/activity_product"
@@ -64,4 +65,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
 </layout>

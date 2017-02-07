@@ -1,10 +1,12 @@
 package com.example.android.ilovezappos.model.POJO;
 
+import java.io.Serializable;
+
 /**
  * Created by jennifernghinguyen on 2/3/17.
  */
 
-public class Product {
+public class Product implements Serializable {
     private String brandName;
     private String thumbnailImageUrl;
     private String originalPrice;

@@ -9,14 +9,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.example.android.ilovezappos.Controller.ProductActivityController;
+import com.example.android.ilovezappos.Controller.ProductItemController;
 import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.databinding.ActivityProductBinding;
 import com.example.android.ilovezappos.model.POJO.Product;
-import com.example.android.ilovezappos.model.ViewModel.ProductActivityModel;
 import com.example.android.ilovezappos.networking.ProductLoader;
 import com.example.android.ilovezappos.utils.Constants;
 import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
@@ -29,26 +31,28 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     private ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
     private ActivityProductBinding binding;
-    private ProductActivityModel model;
+    private ProductActivityController productActivityController;
+    private ProductItemController productItemController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
-        model = new ProductActivityModel(this, binding);
-        binding.setProductActivityModel(model);
+        productActivityController = new ProductActivityController(this, binding);
+        binding.setProductActivityController(productActivityController);
         initializeView();
         startLoading(1);
     }
 
     private void initializeView() {
-        initializeRecyclerView(model.getRecyclerView());
-        initializeEmptyView(model.getEmptyView());
-        implementSearchBox(model.getEditField());
+        initializeRecyclerView(productActivityController.getRecyclerView());
+        initializeEmptyView(productActivityController.getEmptyView());
+        implementSearchBox(productActivityController.getEditField());
     }
 
     private void initializeRecyclerView(RecyclerView recyclerView) {
-        adapter = new ProductAdapter(products, this);
+        adapter = new ProductAdapter(products);
+        productItemController = adapter.getProductItemController();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -122,15 +126,17 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     public void enableEmptyView(boolean status, String message) {
         if (status) {
-            model.getRecyclerView().setVisibility(View.GONE);
-            model.getEmptyView().setVisibility(View.VISIBLE);
-            model.getEmptyTextView().setVisibility(View.VISIBLE);
-            model.getEmptyTextView().setText(message);
+            productActivityController.getRecyclerView().setVisibility(View.GONE);
+            productActivityController.getEmptyView().setVisibility(View.VISIBLE);
+            productActivityController.getEmptyTextView().setVisibility(View.VISIBLE);
+            productActivityController.getEmptyTextView().setText(message);
         } else {
-            model.getRecyclerView().setVisibility(View.VISIBLE);
-            model.getEmptyView().setVisibility(View.GONE);
-            model.getEmptyTextView().setVisibility(View.GONE);
+            productActivityController.getRecyclerView().setVisibility(View.VISIBLE);
+            productActivityController.getEmptyView().setVisibility(View.GONE);
+            productActivityController.getEmptyTextView().setVisibility(View.GONE);
         }
     }
+
+
 
 }
