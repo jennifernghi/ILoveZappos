@@ -15,7 +15,7 @@ import com.example.android.ilovezappos.model.POJO.Product;
 
 public class ProductDetail extends AppCompatActivity {
     public final static String PRODUCT_INFO = "PRODUCT_INFO";
-    ActivityProductDetailBinding binding;
+    private ActivityProductDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

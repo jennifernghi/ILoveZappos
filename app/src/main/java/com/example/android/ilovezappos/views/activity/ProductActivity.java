@@ -26,34 +26,39 @@ import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
 
 import java.util.ArrayList;
 
+import static com.example.android.ilovezappos.utils.Constants.LOADER_CONSTANT;
+
 public class ProductActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Product>> {
+
 
     private String term = "";
     private ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
     private ActivityProductBinding binding;
     private ProductActivityViewModel productActivityViewModel;
-    private ProductItemViewModel productItemViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
-        productActivityViewModel = new ProductActivityViewModel(this, binding);
-        binding.setProductActivityViewModel(productActivityViewModel);
         initializeView();
-        startLoading(1);
+        startLoading(Constants.LOADER_CONSTANT);
     }
 
     private void initializeView() {
+        initializeLayoutBinding();
         initializeRecyclerView(productActivityViewModel.getRecyclerView());
         initializeEmptyView(productActivityViewModel.getEmptyView());
         implementSearchBox(productActivityViewModel.getEditField());
     }
 
+    private void initializeLayoutBinding(){
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
+        productActivityViewModel = new ProductActivityViewModel(this, binding);
+        binding.setProductActivityViewModel(productActivityViewModel);
+    }
     private void initializeRecyclerView(RecyclerView recyclerView) {
         adapter = new ProductAdapter(products);
-        productItemViewModel = adapter.getProductItemViewModel();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -93,7 +98,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     }
 
 
-    public void search(EditText editText) {
+    private void search(EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -104,7 +109,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 term = s.toString().trim();
-                startLoading(1);
+                startLoading(Constants.LOADER_CONSTANT);
             }
 
             @Override
@@ -117,7 +122,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoaderReset(Loader loader) {
-
+        loader.reset();
     }
 
     public void startLoading(int loaderConstant) {
@@ -129,7 +134,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     }
 
 
-    public void enableEmptyView(boolean status, String message) {
+    private void enableEmptyView(boolean status, String message) {
         if (status) {
             productActivityViewModel.getRecyclerView().setVisibility(View.GONE);
             productActivityViewModel.getEmptyView().setVisibility(View.VISIBLE);

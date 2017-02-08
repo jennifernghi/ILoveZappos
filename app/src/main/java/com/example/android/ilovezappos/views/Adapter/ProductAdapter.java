@@ -19,13 +19,10 @@ import java.util.ArrayList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder>{
     private ArrayList<Product> products = new ArrayList<>();
-    private ProductItemViewModel productItemViewModel;
-
 
     public ProductAdapter(ArrayList<Product> data){
         super();
         products = data;
-       // productActivity = _productActivity;
     }
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,7 +33,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder>{
     @Override
     public void onBindViewHolder(ProductViewHolder holder, final int position) {
         holder.bindConnection(products.get(position));
-        productItemViewModel = holder.getProductItemViewModel();
+
     }
 
     @Override
@@ -50,7 +47,4 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder>{
     }
 
 
-    public ProductItemViewModel getProductItemViewModel(){
-        return this.productItemViewModel;
-    }
 }

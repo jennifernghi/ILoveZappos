@@ -24,11 +24,11 @@ public class AddCartSuccess extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-    public void animation() {
+    private void animation() {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-    public void disappear(int second) {
+    private void disappear(int second) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {

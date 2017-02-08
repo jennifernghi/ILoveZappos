@@ -47,7 +47,7 @@ public final class URLUtils {
         return builder.toString();
     }
 
-    public static URL createURL(String urlString) {
+    private static URL createURL(String urlString) {
         URL url = null;
         if (urlString == null) {
             return null;
@@ -62,7 +62,7 @@ public final class URLUtils {
         return url;
     }
 
-    public static String downloadJsonResponse(URL url) throws IOException {
+    private static String downloadJsonResponse(URL url) throws IOException {
         String response = "";
         if (url == null) {
             return response;
@@ -110,7 +110,7 @@ public final class URLUtils {
         return response.toString();
     }
 
-    public static ArrayList<Product> extractProducts(String jsonResponse) {
+    private static ArrayList<Product> extractProducts(String jsonResponse) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             JSONObject root = new JSONObject(jsonResponse);

@@ -17,7 +17,6 @@ import com.example.android.ilovezappos.model.POJO.Product;
 public class ProductActivityViewModel {
 
     private Context context;
-    private Product product;
     private ActivityProductBinding binding;
 
     public ProductActivityViewModel(Context _context, ActivityProductBinding _binding) {
@@ -41,5 +40,10 @@ public class ProductActivityViewModel {
     public EditText getEditField() {
         return binding.inputText;
     }
+
+    public Context getContext(){
+        return context;
+    }
+
 
 }

@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 public class ProductLoader extends AsyncTaskLoader<List<Product>> {
-    final static String LOG_TAG = ProductLoader.class.getSimpleName();
     private String baseUrl;
     private String term;
     private Context context;
