@@ -3,6 +3,9 @@
 <p>Name: Nghi Nguyen</p>
 <p>LinkedIn: https://www.linkedin.com/in/nghi-nguyen/</p>
 
+<p><b>Requiremets: </b></p> 
+<p>minSdkVersion 21</p>
+
 <p>3 main states of the app:</p>
 ![alt tag](https://github.com/jennifernghi/ILoveZappos/blob/master/scratch/Screen%20Shot%202017-02-08%20at%2010.06.02%20PM.png)
 
