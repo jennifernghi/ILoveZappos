@@ -12,7 +12,6 @@ public class Product implements Serializable {
     private String originalPrice;
     private String price;
     private String percentOff;
-    private String productUrl;
     private String productName;
 
     /**
@@ -23,7 +22,6 @@ public class Product implements Serializable {
      * @param originalPrice
      * @param price
      * @param percentOff
-     * @param productUrl
      * @param productName
      */
     public Product(String brandName,
@@ -31,7 +29,6 @@ public class Product implements Serializable {
                    String originalPrice,
                    String price,
                    String percentOff,
-                   String productUrl,
                    String productName) {
 
         this.brandName = brandName;
@@ -39,7 +36,6 @@ public class Product implements Serializable {
         this.originalPrice = originalPrice;
         this.price = price;
         this.percentOff = percentOff;
-        this.productUrl = productUrl;
         this.productName = productName;
 
     }
@@ -94,21 +90,16 @@ public class Product implements Serializable {
     /**
      * getter
      *
-     * @return productUrl
-     */
-    public String getProductUrl() {
-        return this.productUrl;
-    }
-
-    /**
-     * getter
-     *
      * @return productName
      */
     public String getProductName() {
         return this.productName;
     }
 
+    /**
+     * check if a product has a positive discount
+     * @return
+     */
     public boolean hasDiscount(){
         if(!this.percentOff.equals("0%") && !this.percentOff.equals("") && this.percentOff !=null){
             return true;

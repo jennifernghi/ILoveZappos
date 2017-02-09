@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ProductLoader extends AsyncTaskLoader<List<Product>> {
     private String baseUrl;
-    private String term;
+    private String term;//search term
     private Context context;
 
     public ProductLoader(Context context, String baseUrl, String term) {
@@ -33,7 +33,7 @@ public class ProductLoader extends AsyncTaskLoader<List<Product>> {
 
     @Override
     public List<Product> loadInBackground() {
-        ArrayList<Product> products;
+        ArrayList<Product> products = new ArrayList<>();
         if (baseUrl == null || !baseUrl.equals(Constants.BASE_URL)) {
             return null;
         }
@@ -42,8 +42,12 @@ public class ProductLoader extends AsyncTaskLoader<List<Product>> {
             term = "";
         }
 
+        //build a valid url from baseurl and search term
         String url = URLUtils.buildURI(context, baseUrl, term);
-        products = URLUtils.fetchData(url);
+        if (url != null) {
+            //fetch data from the valid url
+            products = URLUtils.fetchData(url);
+        }
 
 
         return products;

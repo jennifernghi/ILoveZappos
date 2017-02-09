@@ -20,7 +20,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindConnection(Product product) {
-
+        //bind view model ProductItemViewModel with product_list_item.xml
         binding.setProductItemViewModel(new ProductItemViewModel(itemView.getContext(), product));
     }
 

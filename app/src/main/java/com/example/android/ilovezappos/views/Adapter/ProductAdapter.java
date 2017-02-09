@@ -26,12 +26,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder>{
     }
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //inflate product_list_item.xml for each product, using binding
         ProductListItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.product_list_item, parent, false);
+        //new Holder with binding attached
         return new ProductViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, final int position) {
+       // bind each product with view model: ProductItemViewModel
         holder.bindConnection(products.get(position));
 
     }

@@ -22,8 +22,10 @@ import java.util.ArrayList;
 
 /**
  * Created by jennifernghinguyen on 2/3/17.
- * this clas is responsible for handling:
+ * this immutable class is responsible for handling:
  * url string modifications
+ * parsing json
+ * main fetch data from url
  */
 
 public final class URLUtils {
@@ -34,6 +36,13 @@ public final class URLUtils {
 
     }
 
+    /**
+     * build a valid url from url base and search term
+     * @param ct
+     * @param urlBase
+     * @param term
+     * @return url string
+     */
     public static String buildURI(Context ct, String urlBase, String term) {
         context = ct;
         if (urlBase == null && term == null) {
@@ -47,6 +56,11 @@ public final class URLUtils {
         return builder.toString();
     }
 
+    /**
+     * create an URL object out of valid urlString
+     * @param urlString
+     * @return URL
+     */
     private static URL createURL(String urlString) {
         URL url = null;
         if (urlString == null) {
@@ -62,6 +76,12 @@ public final class URLUtils {
         return url;
     }
 
+    /**
+     * open httpurlconnection and download json response
+     * @param url
+     * @return json response
+     * @throws IOException
+     */
     private static String downloadJsonResponse(URL url) throws IOException {
         String response = "";
         if (url == null) {
@@ -95,6 +115,12 @@ public final class URLUtils {
         return response;
     }
 
+    /**
+     * read json response from input stream and write to a string
+     * @param inputStream
+     * @return
+     * @throws IOException
+     */
     private static String getResponseFromStream(InputStream inputStream) throws IOException {
         StringBuilder response = new StringBuilder();
         if (inputStream != null) {
@@ -110,6 +136,11 @@ public final class URLUtils {
         return response.toString();
     }
 
+    /**
+     * extract data from downloaded json response
+     * @param jsonResponse
+     * @return ArrayList<Product>
+     */
     private static ArrayList<Product> extractProducts(String jsonResponse) {
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -119,16 +150,27 @@ public final class URLUtils {
             for (int i = 0; i < results.length(); i++) {
 
                 JSONObject product = (JSONObject) results.get(i);
+                //brand name
                 String brandName = getString(product, "brandName");
+
+                //thumbnailImageUrl
                 String thumbnailImageUrl = getString(product, "thumbnailImageUrl");
+
+                //originalPrice
                 String originalPrice = getString(product, "originalPrice");
+
+                //price
                 String price = getString(product, "price");
+
+                //percentOff
                 String percentOff = getString(product, "percentOff");
-                String productUrl = getString(product, "productUrl");
+
+                //productName
                 String productName = getString(product, "productName");
 
-                if (brandName != null && thumbnailImageUrl != null && originalPrice != null && price != null && percentOff != null && productUrl != null && productName != null) {
-                    products.add(new Product(brandName, thumbnailImageUrl, originalPrice, price, percentOff, productUrl, productName));
+                if (brandName != null && thumbnailImageUrl != null && originalPrice != null && price != null && percentOff != null && productName != null) {
+                    //create the product
+                    products.add(new Product(brandName, thumbnailImageUrl, originalPrice, price, percentOff, productName));
                 }
             }
         } catch (JSONException e) {
@@ -139,6 +181,12 @@ public final class URLUtils {
 
     }
 
+    /**
+     * get string from Json type string
+     * @param object - Json object
+     * @param string - string inside Json object
+     * @return string
+     */
     private static String getString(JSONObject object, String string) {
         String str = null;
 
@@ -155,6 +203,11 @@ public final class URLUtils {
         }
     }
 
+    /**
+     * fetch data from urlString
+     * @param urlString
+     * @return
+     */
     public static ArrayList<Product> fetchData(String urlString) {
         ArrayList<Product> news = new ArrayList<>();
         URL url = createURL(urlString);

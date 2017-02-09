@@ -12,6 +12,7 @@
             type="com.example.android.ilovezappos.model.ViewModel.ProductActivityViewModel" />
     </data>
 
+    <!--search box-->
 
     <RelativeLayout
         android:id="@+id/activity_product"
@@ -22,8 +23,9 @@
         <RelativeLayout
             android:id="@+id/search_box"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/search_box_height"
             android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/default_space"
             android:background="@android:color/white">
 
             <EditText
@@ -40,6 +42,7 @@
 
         </RelativeLayout>
 
+        <!--recycler view-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"
@@ -47,6 +50,7 @@
             android:layout_below="@id/search_box"
             android:scrollbars="vertical" />
 
+        <!--Empty view-->
         <RelativeLayout
             android:id="@+id/empty_view"
             android:layout_width="match_parent"
@@ -60,9 +64,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/no_data"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:visibility="gone" />
         </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/loading_indicator"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
     </RelativeLayout>
 

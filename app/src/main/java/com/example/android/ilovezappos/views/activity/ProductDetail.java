@@ -15,32 +15,58 @@ import com.example.android.ilovezappos.model.POJO.Product;
 
 public class ProductDetail extends AppCompatActivity {
     public final static String PRODUCT_INFO = "PRODUCT_INFO";
-    private ActivityProductDetailBinding binding;
+    private ActivityProductDetailBinding binding; // bind to activity_product_detail.xml
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //initialize layout: activity_product_detail.xml
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail);
+        //get serializable product info from intent
         getProductInfo();
+
+        //show home arrow
         showHomeArrow();
     }
 
+    /**
+     * static class call when item is cliked: call onSelected(view) in ProductItemViewModel
+     * start intent to open activity_product_detail with selected product info
+     * @param context
+     * @param product - reference got from ProductItemViewModel
+     */
     public static void startIntent(Context context, Product product){
         Intent intent = new Intent(context, ProductDetail.class);
         intent.putExtra(PRODUCT_INFO, product);
         context.startActivity(intent);
     }
+
+    /**
+     * get serialize selected product from intent
+     */
     private void getProductInfo() {
         Product people = (Product) getIntent().getSerializableExtra(PRODUCT_INFO);
         ProductDetailViewModel productDetailViewModel = new ProductDetailViewModel(this,people);
         binding.setProductDetailViewModel(productDetailViewModel);
-        setTitle(people.getProductName());
+        setTitle(people.getProductName());//set title with the name of the product
     }
 
+    /**
+     * show home arrow key
+     */
     private void showHomeArrow() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if(actionBar!=null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
+
+    /**
+     * when home arrow is clicked, go back to previous activity
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

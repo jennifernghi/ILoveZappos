@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ILoveZappos</string>
+    <string name="app_name">I Love Zappos</string>
     <string name="search">Search Products</string>
     <string name="no_data">No product found!</string>
     <string name="no_network">No Internet connection.</string>
-    <string name="success">Success!</string>
+    <string name="success">Added to cart!</string>
     <string name="off">OFF</string>
 </resources>

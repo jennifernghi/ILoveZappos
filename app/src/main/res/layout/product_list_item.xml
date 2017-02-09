@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="productItemViewModel"
             type="com.example.android.ilovezappos.model.ViewModel.ProductItemViewModel" />
@@ -12,55 +13,49 @@
         android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/default_space"
+        android:layout_marginEnd="@dimen/default_space"
+        android:layout_marginStart="@dimen/default_space"
         android:background="@android:color/white"
-        android:onClick="@{productItemViewModel::onSelected}">
+        android:onClick="@{productItemViewModel::onSelected}"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="@dimen/list_image"
+            android:layout_height="@dimen/list_image"
+            android:layout_marginEnd="@dimen/default_space"
+            android:layout_marginStart="@dimen/default_space"
             app:thumbnailImageUrl="@{productItemViewModel.thumbnailImageUrl}" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="4dp">
+            android:paddingTop="@dimen/medium_space">
 
             <TextView
+                style="@style/list_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{productItemViewModel.productName}"
-                android:textColor="@color/primaryText"
-                android:layout_marginEnd="4dp"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:layout_marginEnd="@dimen/medium_space"
+                android:text="@{productItemViewModel.productName}" />
 
             <TextView
+                style="@style/list_product_brand_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{productItemViewModel.brandName}"
-                android:textColor="@color/secondaryText"
-                android:textSize="14sp" />
+                android:text="@{productItemViewModel.brandName}" />
 
             <TextView
+                style="@style/list_product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{productItemViewModel.price}"
-                android:textColor="@color/primaryText"
-                android:textSize="14sp" />
+                android:text="@{productItemViewModel.price}" />
 
             <TextView
+                style="@style/list_product_original_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
                 app:orginalPriceVisibility="@{productItemViewModel.product}"
                 app:strikethrough="@{productItemViewModel.originalPrice}" />
         </LinearLayout>

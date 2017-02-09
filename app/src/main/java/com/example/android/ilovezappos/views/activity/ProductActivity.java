@@ -15,58 +15,83 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
-import com.example.android.ilovezappos.model.ViewModel.ProductActivityViewModel;
-import com.example.android.ilovezappos.model.ViewModel.ProductItemViewModel;
 import com.example.android.ilovezappos.R;
 import com.example.android.ilovezappos.databinding.ActivityProductBinding;
 import com.example.android.ilovezappos.model.POJO.Product;
+import com.example.android.ilovezappos.model.ViewModel.ProductActivityViewModel;
 import com.example.android.ilovezappos.networking.ProductLoader;
 import com.example.android.ilovezappos.utils.Constants;
 import com.example.android.ilovezappos.views.Adapter.ProductAdapter;
 
 import java.util.ArrayList;
 
-import static com.example.android.ilovezappos.utils.Constants.LOADER_CONSTANT;
-
 public class ProductActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Product>> {
 
 
-    private String term = "";
+    private String term = ""; // hold search words
     private ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
-    private ActivityProductBinding binding;
-    private ProductActivityViewModel productActivityViewModel;
+    private ActivityProductBinding binding; //bind to activity_product.xml
+    private ProductActivityViewModel productActivityViewModel; //viewmodel class
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate layout, views...
         initializeView();
+        //download data from url
         startLoading(Constants.LOADER_CONSTANT);
     }
 
+    /**
+     * initialize all views
+     */
     private void initializeView() {
         initializeLayoutBinding();
         initializeRecyclerView(productActivityViewModel.getRecyclerView());
         initializeEmptyView(productActivityViewModel.getEmptyView());
         implementSearchBox(productActivityViewModel.getEditField());
+        productActivityViewModel.showProgressBar(false);
     }
 
-    private void initializeLayoutBinding(){
+
+    /**
+     * set up bindings: activity_product.xml and it's view model ProductActivityViewModel class
+     */
+    private void initializeLayoutBinding() {
+        //initialize binding with activity_product.xml
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
+        //hook view model with activity_product.xml binding
         productActivityViewModel = new ProductActivityViewModel(this, binding);
         binding.setProductActivityViewModel(productActivityViewModel);
     }
+
+    /**
+     * initialize recycler view
+     *
+     * @param recyclerView - reference from view model: productActivityViewModel
+     */
     private void initializeRecyclerView(RecyclerView recyclerView) {
         adapter = new ProductAdapter(products);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
 
+    /**
+     * initialize empty view
+     *
+     * @param relativeLayout - reference from view model: productActivityViewModel
+     */
     private void initializeEmptyView(RelativeLayout relativeLayout) {
         relativeLayout.setVisibility(View.GONE);
     }
 
+    /**
+     * implement search box and search feature
+     *
+     * @param searchInput - editText from view model: productActivityViewModel
+     */
     private void implementSearchBox(final EditText searchInput) {
         searchInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,27 +102,47 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
                 }
             }
         });
+        //search feature
         search(searchInput);
     }
 
+    /**
+     * initialize Asynstaskloader class: ProductLoader
+     *
+     * @param id
+     * @param args
+     * @return ProductLoader
+     */
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         return new ProductLoader(getApplicationContext(), Constants.BASE_URL, term);
     }
 
+    /**
+     * update UI after finish loading
+     *
+     * @param loader
+     * @param data
+     */
     @Override
     public void onLoadFinished(Loader<ArrayList<Product>> loader, ArrayList<Product> data) {
         if (data.size() >= 1) {
-            enableEmptyView(false, null);
+            productActivityViewModel.enableEmptyView(false, null);
             products = data;
             adapter.setLoadedProducts(products);
+            productActivityViewModel.showProgressBar(false);
 
         } else {
-            enableEmptyView(true, getString(R.string.no_data));
+            //show empty view if fail
+            productActivityViewModel.enableEmptyView(true, getString(R.string.no_data));
         }
     }
 
-
+    /**
+     * search feature: update as user input words
+     *
+     * @param editText
+     */
     private void search(EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {
 
@@ -108,7 +153,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                term = s.toString().trim();
+                term = s.toString().trim(); //update search term
                 startLoading(Constants.LOADER_CONSTANT);
             }
 
@@ -120,34 +165,36 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
     }
 
 
+    /**
+     * when loader reset
+     *
+     * @param loader
+     */
     @Override
     public void onLoaderReset(Loader loader) {
         loader.reset();
     }
 
+    /**
+     * start loading data from url
+     * only when having internet connection
+     *
+     * @param loaderConstant
+     */
     public void startLoading(int loaderConstant) {
         if (checkNetWorkConnection()) {
+            productActivityViewModel.showProgressBar(true);
             getLoaderManager().restartLoader(loaderConstant, null, ProductActivity.this);
         } else {
-            enableEmptyView(true, getString(R.string.no_network));
+            //if no internet connection show empty view
+            productActivityViewModel.enableEmptyView(true, getString(R.string.no_network));
         }
     }
 
-
-    private void enableEmptyView(boolean status, String message) {
-        if (status) {
-            productActivityViewModel.getRecyclerView().setVisibility(View.GONE);
-            productActivityViewModel.getEmptyView().setVisibility(View.VISIBLE);
-            productActivityViewModel.getEmptyTextView().setVisibility(View.VISIBLE);
-            productActivityViewModel.getEmptyTextView().setText(message);
-        } else {
-            productActivityViewModel.getRecyclerView().setVisibility(View.VISIBLE);
-            productActivityViewModel.getEmptyView().setVisibility(View.GONE);
-            productActivityViewModel.getEmptyTextView().setVisibility(View.GONE);
-        }
-    }
-
-
+    /**
+     * check internet connection
+     * @return true/false
+     */
     private boolean checkNetWorkConnection() {
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);

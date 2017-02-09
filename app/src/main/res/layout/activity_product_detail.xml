@@ -1,88 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.android.ilovezappos.views.activity.ProductDetail"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<data>
-    <variable
-        name="product"
-        type="com.example.android.ilovezappos.model.POJO.Product"/>
-    <variable
-        name="productDetailViewModel"
-        type="com.example.android.ilovezappos.model.ViewModel.ProductDetailViewModel"/>
-</data>
+    tools:context="com.example.android.ilovezappos.views.activity.ProductDetail">
+
+    <data>
+        <variable
+            name="productDetailViewModel"
+            type="com.example.android.ilovezappos.model.ViewModel.ProductDetailViewModel" />
+    </data>
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
 
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                app:thumbnailImageUrl="@{productDetailViewModel.thumbnailImageUrl}" />
-        </LinearLayout>
-        <LinearLayout
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:background="@android:color/white">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{productDetailViewModel.productName}"
-                android:textColor="@color/primaryText"
-                android:layout_marginEnd="4dp"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{productDetailViewModel.brandName}"
-                android:textColor="@color/secondaryText"
-                android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_space"
+                    android:layout_marginTop="@dimen/default_space"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{productDetailViewModel.price}"
-                android:textColor="@color/primaryText"
-                android:textSize="14sp" />
+                    <ImageView
+                        android:layout_width="@dimen/detail_image_dimen"
+                        android:layout_height="@dimen/detail_image_dimen"
+                        android:layout_marginEnd="@dimen/default_space"
+                        android:layout_marginStart="@dimen/default_space"
+                        app:thumbnailImageUrl="@{productDetailViewModel.thumbnailImageUrl}" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
-                app:orginalPriceVisibility="@{productDetailViewModel.product}"
-                app:strikethrough="@{productDetailViewModel.originalPrice}" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
-                android:text="@{productDetailViewModel.percentOff}"
-                app:orginalPriceVisibility="@{productDetailViewModel.product}" />
-        </LinearLayout>
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/default_space">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".8"
+                        android:orientation="vertical"
+                        android:paddingEnd="@dimen/default_space">
+
+                        <TextView
+                            style="@style/detail_product_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_space"
+                            android:text="@{productDetailViewModel.productName}" />
+
+                        <TextView
+                            style="@style/detail_product_brand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_space"
+                            android:text="@{productDetailViewModel.brandName}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/detail_product_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_space"
+                            android:text="@{productDetailViewModel.price}" />
+
+                        <TextView
+                            style="@style/detail_product_brand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_space"
+                            app:orginalPriceVisibility="@{productDetailViewModel.product}"
+                            app:strikethrough="@{productDetailViewModel.originalPrice}" />
+
+                        <TextView
+                            style="@style/detail_product_brand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_space"
+                            android:text="@{productDetailViewModel.percentOff}"
+                            app:orginalPriceVisibility="@{productDetailViewModel.product}" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/large_space"
             android:onClick="@{productDetailViewModel::addToCard}"
             android:src="@drawable/add" />
     </android.support.design.widget.CoordinatorLayout>
