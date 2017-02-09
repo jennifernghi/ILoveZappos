@@ -1,4 +1,5 @@
 # ILoveZappos
+<p>This app using data binding, AsyncTaskLoader, animation to fetch and download data from Zappos API</p>
 
 <p>Name: Nghi Nguyen</p>
 <p>LinkedIn: https://www.linkedin.com/in/nghi-nguyen/</p>
