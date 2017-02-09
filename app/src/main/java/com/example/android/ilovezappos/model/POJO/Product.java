@@ -98,12 +98,13 @@ public class Product implements Serializable {
 
     /**
      * check if a product has a positive discount
+     *
      * @return
      */
-    public boolean hasDiscount(){
-        if(!this.percentOff.equals("0%") && !this.percentOff.equals("") && this.percentOff !=null){
+    public boolean hasDiscount() {
+        if (!this.percentOff.equals("0%") && !this.percentOff.equals("") && this.percentOff != null) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

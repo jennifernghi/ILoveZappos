@@ -23,6 +23,7 @@ public class ProductDetailViewModel extends AbstractProductDetailViewModel {
 
     /**
      * called when float button is clicked
+     *
      * @param view
      */
     public void addToCard(View view) {

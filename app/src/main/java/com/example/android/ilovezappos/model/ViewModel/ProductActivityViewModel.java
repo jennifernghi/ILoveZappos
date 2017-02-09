@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.android.ilovezappos.databinding.ActivityProductBinding;
-import com.example.android.ilovezappos.model.POJO.Product;
 
 
 /**
@@ -30,6 +29,7 @@ public class ProductActivityViewModel {
 
     /**
      * get recycler view in active_product.xml
+     *
      * @return recyclerview
      */
     public RecyclerView getRecyclerView() {
@@ -38,6 +38,7 @@ public class ProductActivityViewModel {
 
     /**
      * get empty view relative layout in active_product.xml
+     *
      * @return relativelayout
      */
     public RelativeLayout getEmptyView() {
@@ -46,6 +47,7 @@ public class ProductActivityViewModel {
 
     /**
      * get text view in empty view in active_product.xml
+     *
      * @return text view
      */
     public TextView getEmptyTextView() {
@@ -54,6 +56,7 @@ public class ProductActivityViewModel {
 
     /**
      * get search edittext in active_product.xml
+     *
      * @return edittext
      */
     public EditText getEditField() {
@@ -62,45 +65,51 @@ public class ProductActivityViewModel {
 
     /**
      * get progressbar in active_product.xml
+     *
      * @return progressbar
      */
-    public ProgressBar getProgressBar(){ return  binding.loadingIndicator;}
+    public ProgressBar getProgressBar() {
+        return binding.loadingIndicator;
+    }
 
     /**
      * get the context
+     *
      * @return context
      */
-    public Context getContext(){
+    public Context getContext() {
         return context;
     }
 
 
     /**
      * enable emptyview
-     * @param status - t/f
+     *
+     * @param status  - t/f
      * @param message - message shown in emptytextview
      */
     public void enableEmptyView(boolean status, String message) {
         if (status) {
-          getRecyclerView().setVisibility(View.GONE);
-           getEmptyView().setVisibility(View.VISIBLE);
-           getEmptyTextView().setVisibility(View.VISIBLE);
-           getEmptyTextView().setText(message);
+            getRecyclerView().setVisibility(View.GONE);
+            getEmptyView().setVisibility(View.VISIBLE);
+            getEmptyTextView().setVisibility(View.VISIBLE);
+            getEmptyTextView().setText(message);
         } else {
-           getRecyclerView().setVisibility(View.VISIBLE);
-           getEmptyView().setVisibility(View.GONE);
-           getEmptyTextView().setVisibility(View.GONE);
+            getRecyclerView().setVisibility(View.VISIBLE);
+            getEmptyView().setVisibility(View.GONE);
+            getEmptyTextView().setVisibility(View.GONE);
         }
     }
 
     /**
      * show progress bar
+     *
      * @param on T/F
      */
-    public void showProgressBar(boolean on){
-        if(on){
-           getProgressBar().setVisibility(View.VISIBLE);
-        }else {
+    public void showProgressBar(boolean on) {
+        if (on) {
+            getProgressBar().setVisibility(View.VISIBLE);
+        } else {
             getProgressBar().setVisibility(View.GONE);
         }
     }

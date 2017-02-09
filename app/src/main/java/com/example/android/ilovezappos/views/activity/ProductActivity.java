@@ -193,6 +193,7 @@ public class ProductActivity extends AppCompatActivity implements LoaderManager.
 
     /**
      * check internet connection
+     *
      * @return true/false
      */
     private boolean checkNetWorkConnection() {

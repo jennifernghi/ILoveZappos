@@ -20,6 +20,7 @@ import com.example.android.ilovezappos.model.POJO.Product;
  * view model for ProductItemViewModel and ProductDetailViewModel
  */
 public abstract class AbstractProductDetailViewModel {
+
     private Context context;
     //reference of the selected product
     private Product product;
@@ -31,6 +32,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get the product
+     *
      * @return product object
      */
     public Product getProduct() {
@@ -39,6 +41,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get prpduct's brand name
+     *
      * @return string
      */
     public String getBrandName() {
@@ -48,6 +51,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get prpduct's thumbnailimageurl
+     *
      * @return string
      */
     public String getThumbnailImageUrl() {
@@ -56,6 +60,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get prpduct's original price
+     *
      * @return string
      */
     public String getOriginalPrice() {
@@ -65,6 +70,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get prpduct's price
+     *
      * @return string
      */
     public String getPrice() {
@@ -73,6 +79,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get prpduct's percent off
+     *
      * @return string
      */
     public String getPercentOff() {
@@ -81,6 +88,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get prpduct's name
+     *
      * @return string
      */
     public String getProductName() {
@@ -89,6 +97,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * get context
+     *
      * @return context
      */
     public Context getContext() {
@@ -97,6 +106,7 @@ public abstract class AbstractProductDetailViewModel {
 
     /**
      * for each image view use Glide to load image to image view with tag app:thumbnailImageUrl
+     *
      * @param imageView
      * @param thumbnailImageUrl
      */
@@ -109,6 +119,7 @@ public abstract class AbstractProductDetailViewModel {
     /**
      * for each text view with tag app: strikethrough
      * the text has a strike through
+     *
      * @param textView
      * @param text
      */
@@ -121,6 +132,7 @@ public abstract class AbstractProductDetailViewModel {
     /**
      * for each text view with tag app:orginalPriceVisibility
      * if the product has a positive discount, set it to be visible
+     *
      * @param textView
      * @param product
      */

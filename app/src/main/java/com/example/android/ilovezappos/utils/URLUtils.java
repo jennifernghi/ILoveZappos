@@ -2,7 +2,6 @@ package com.example.android.ilovezappos.utils;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 
 import com.example.android.ilovezappos.model.POJO.Product;
 
@@ -29,7 +28,6 @@ import java.util.ArrayList;
  */
 
 public final class URLUtils {
-    final static String LOG_TAG = URLUtils.class.getSimpleName();
     public static Context context;
 
     private URLUtils() {
@@ -38,6 +36,7 @@ public final class URLUtils {
 
     /**
      * build a valid url from url base and search term
+     *
      * @param ct
      * @param urlBase
      * @param term
@@ -58,6 +57,7 @@ public final class URLUtils {
 
     /**
      * create an URL object out of valid urlString
+     *
      * @param urlString
      * @return URL
      */
@@ -70,7 +70,7 @@ public final class URLUtils {
         try {
             url = new URL(urlString);
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "createURL(): error create url");
+
         }
 
         return url;
@@ -78,6 +78,7 @@ public final class URLUtils {
 
     /**
      * open httpurlconnection and download json response
+     *
      * @param url
      * @return json response
      * @throws IOException
@@ -102,7 +103,7 @@ public final class URLUtils {
                 response = getResponseFromStream(inputStream);
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "downloadJsonResponse(): error making connection");
+
         } finally {
             if (httpURLConnection != null) {
                 httpURLConnection.disconnect();
@@ -117,6 +118,7 @@ public final class URLUtils {
 
     /**
      * read json response from input stream and write to a string
+     *
      * @param inputStream
      * @return
      * @throws IOException
@@ -138,6 +140,7 @@ public final class URLUtils {
 
     /**
      * extract data from downloaded json response
+     *
      * @param jsonResponse
      * @return ArrayList<Product>
      */
@@ -174,7 +177,7 @@ public final class URLUtils {
                 }
             }
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "getResponseFromStream(): error parsing json");
+
         }
 
         return products;
@@ -183,6 +186,7 @@ public final class URLUtils {
 
     /**
      * get string from Json type string
+     *
      * @param object - Json object
      * @param string - string inside Json object
      * @return string
@@ -193,7 +197,7 @@ public final class URLUtils {
         try {
             str = object.getString(string);
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "product() error extract" + string);
+
         }
 
         if (str != null) {
@@ -205,6 +209,7 @@ public final class URLUtils {
 
     /**
      * fetch data from urlString
+     *
      * @param urlString
      * @return
      */
@@ -216,7 +221,7 @@ public final class URLUtils {
         try {
             response = downloadJsonResponse(url);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "downloadJsonResponse(): error making connection");
+
         }
 
         if (!response.equals("")) {

@@ -24,6 +24,7 @@ public class AddCartSuccess extends AppCompatActivity {
      * static method called when floating button is clicked: addToCard()
      * called by addToCard(view) in ProductItemViewModel
      * start this activity
+     *
      * @param context
      */
     public static void start(Context context) {
@@ -40,6 +41,7 @@ public class AddCartSuccess extends AppCompatActivity {
 
     /**
      * after x second this activity will be finished
+     *
      * @param second
      */
     private void disappear(int second) {
